@@ -10,6 +10,9 @@ registerSketch('sk2', function(p) {
     w = Math.min(p.windowWidth, MAX_W);
     h = Math.min(p.windowHeight, MAX_H);
     p.createCanvas(w, h);
+    p.textAlign(p.CENTER, p.CENTER);
+    p.textStyle(p.BOLD);
+    p.noStroke();
     p.generateSprinkles();
   };
 
@@ -53,6 +56,12 @@ registerSketch('sk2', function(p) {
         }
       }
     }
+
+    p.fill(10);
+    p.textSize(90); 
+    const hh = p.nf(hr12, 2);
+    const mm = p.nf(mn, 2);
+    p.text(`${hh}:${mm}`, w / 2, h / 2);
  };
 
  p.generateSprinkles = function () {
