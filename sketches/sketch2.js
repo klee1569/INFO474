@@ -4,11 +4,13 @@ registerSketch('sk2', function(p) {
   const MAX_W = 800;
   const MAX_H = 800;
   let w, h;
+  let storedSprinkles = [];
   
   p.setup = function() {
     w = Math.min(p.windowWidth, MAX_W);
     h = Math.min(p.windowHeight, MAX_H);
     p.createCanvas(w, h);
+    p.generateSprinkles();
   };
 
 
@@ -42,6 +44,35 @@ registerSketch('sk2', function(p) {
 
       p.fill(255, 180, 200);
       p.rect(baseX, fy, frostingWidth, frostingH, 10);
+
+      let sprinkleLayer = storedSprinkles[i] || [];
+      for (let s of sprinkleLayer) {
+        if (s.x < baseX + frostingWidth) {
+          p.fill(s.col);
+          p.ellipse(s.x, s.y, 6, 6);
+        }
+      }
     }
- }
+ };
+
+ p.generateSprinkles = function () {
+    storedSprinkles = [];
+    const baseX = w / 4;
+    const cakeWidth = w / 2;
+    const cakeBottom = h * 0.75;
+    const layerH = (h / 2.5) / 12;
+    const frostingH = 12;
+
+    for (let i = 0; i < 12; i++) {
+      const fy = cakeBottom - i * (layerH + frostingH) - layerH - frostingH;
+      const sprinkles = [];
+      const num = p.int(p.random(10, 25));
+      for (let j = 0; j < num; j++) {
+        const sx = baseX + p.random(cakeWidth);
+        const sy = fy + p.random(2, frostingH - 2);
+        sprinkles.push({ x: sx, y: sy, col: p.color(p.random(255), p.random(255), p.random(255)) });
+      }
+      storedSprinkles.push(sprinkles);
+    }
+  };
 });
