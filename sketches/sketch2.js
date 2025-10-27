@@ -31,6 +31,17 @@ registerSketch('sk2', function(p) {
 
       p.fill(245, 220, 180);
       p.rect(baseX, y - layerH, cakeWidth, layerH, 10);
+
+      const fy = y - layerH - frostingH;
+      let frostingWidth;
+      if (i < hr12 - 1) {
+        frostingWidth = cakeWidth;
+      } else {
+        frostingWidth = cakeWidth * (mn / 60);
+      }
+
+      p.fill(255, 180, 200);
+      p.rect(baseX, fy, frostingWidth, frostingH, 10);
     }
  }
 });
