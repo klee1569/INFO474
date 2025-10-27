@@ -30,6 +30,18 @@ registerSketch('sk3', function (p) {
     p.textSize(38);
     p.textAlign(p.CENTER, p.CENTER);
     p.text(timeStr, p.width / 2, p.height / 2 + 50);
+
+    p.fill(200);
+    let btnX = p.width / 2 - 60;
+    for (let i = 0; i < 5; i++) {
+      p.ellipse(btnX + i * 30, p.height / 2 + 100, 20, 20);
+    }
+
+    p.fill(180);
+    let legWidth = 30;
+    let legHeight = 20;
+    p.rect(p.width / 2 - 120, p.height / 2 + 255, legWidth, legHeight, 5);
+    p.rect(p.width / 2 + 120, p.height / 2 + 255, legWidth, legHeight, 5);
   };
 
   p.windowResized = function () {
