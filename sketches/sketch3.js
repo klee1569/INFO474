@@ -16,6 +16,20 @@ registerSketch('sk3', function (p) {
 
     p.fill(220, 180, 180);
     p.ellipse(p.width / 2, p.height / 2 - 195 + 50, 60, 30);
+
+    p.fill(30);
+    p.rectMode(p.CENTER);
+    p.rect(p.width / 2, p.height / 2 + 50, 220, 70, 20);
+
+    let h = p.hour();
+    let m = p.minute();
+    let s = p.second();
+    let timeStr = p.nf(h, 2) + ':' + p.nf(m, 2) + ':' + p.nf(s, 2);
+
+    p.fill(173, 216, 230);
+    p.textSize(38);
+    p.textAlign(p.CENTER, p.CENTER);
+    p.text(timeStr, p.width / 2, p.height / 2 + 50);
   };
 
   p.windowResized = function () {
