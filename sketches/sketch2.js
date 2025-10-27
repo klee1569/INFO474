@@ -84,4 +84,11 @@ registerSketch('sk2', function(p) {
       storedSprinkles.push(sprinkles);
     }
   };
+  
+  p.windowResized = function () {
+    w = Math.min(p.windowWidth, MAX_W);
+    h = Math.min(p.windowHeight, MAX_H);
+    p.resizeCanvas(w, h);
+    p.generateSprinkles();
+  };
 });
