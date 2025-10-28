@@ -10,6 +10,8 @@ registerSketch('sk4', function (p) {
     drawBurner(180, 220, 140, p.hour() % 12, 12);
     drawBurner(520, 220, 80, p.second(), 60);
     drawBurner(350, 380, 110, p.minute(), 60);
+
+    drawKnobs();
   };
 
   function drawBurner(x, y, size, value, maxValue) {
@@ -46,6 +48,34 @@ registerSketch('sk4', function (p) {
 
     p.fill(0, 0, 0, 40);
     p.ellipse(x, y, size * 0.3, size * 0.3);
+  }
+  
+  function drawKnobs() {
+    drawKnob(180, 500, p.hour() % 12, 12, 'H');
+    drawKnob(350, 500, p.minute(), 60, 'M');
+    drawKnob(520, 500, p.second(), 60, 'S');
+  }
+
+  function drawKnob(x, y, value, maxValue, label) {
+    let angle = p.map(value, 0, maxValue, -135, 135);
+
+    p.fill(60, 60, 65);
+    p.noStroke();
+    p.ellipse(x, y, 40, 40);
+
+    p.push();
+    p.translate(x, y);
+    p.rotate(p.radians(angle));
+    p.stroke(200, 200, 210);
+    p.strokeWeight(2);
+    p.line(0, -15, 0, -5);
+    p.pop();
+
+    p.fill(120, 120, 125);
+    p.noStroke();
+    p.textSize(11);
+    p.textAlign(p.CENTER);
+    p.text(label, x, y + 30);
   }
 });    
     
