@@ -12,6 +12,8 @@ registerSketch('sk4', function (p) {
     drawBurner(350, 380, 110, p.minute(), 60);
 
     drawKnobs();
+
+    drawDigitalClock();
   };
 
   function drawBurner(x, y, size, value, maxValue) {
@@ -76,6 +78,22 @@ registerSketch('sk4', function (p) {
     p.textSize(11);
     p.textAlign(p.CENTER);
     p.text(label, x, y + 30);
+  }
+
+  function drawDigitalClock() {
+    p.fill(20, 20, 22);
+    p.noStroke();
+    p.rect(250, 40, 200, 50, 4);
+
+    let h = p.nf(p.hour(), 2);
+    let m = p.nf(p.minute(), 2);
+    let s = p.nf(p.second(), 2);
+    let timeString = h + ':' + m + ':' + s;
+
+    p.fill(255, 100, 40);
+    p.textSize(28);
+    p.textAlign(p.CENTER, p.CENTER);
+    p.text(timeString, 350, 65);
   }
 });    
     
