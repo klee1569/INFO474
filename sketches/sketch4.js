@@ -95,5 +95,9 @@ registerSketch('sk4', function (p) {
     p.textAlign(p.CENTER, p.CENTER);
     p.text(timeString, 350, 65);
   }
+
+  p.windowResized = function () {
+    p.resizeCanvas(700, 600);
+  };
 });    
     
